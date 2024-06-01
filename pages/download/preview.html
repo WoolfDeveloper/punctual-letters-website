@@ -1,0 +1,75 @@
+---
+permalink: /download/preview/index.html
+title: "Download Godot preview builds - Godot Engine"
+description: "Download the latest preview version of the Godot Engine 3 and Godot Engine 4 for Linux, macOS, Windows, or Android"
+layout: default
+---
+
+{% include header.html %}
+
+<link rel="stylesheet" href="/assets/css/transparent-nav.css">
+<link rel="stylesheet" href="/assets/css/download.css?2">
+<link rel="stylesheet" href="/assets/css/download-version.css?2">
+<style>
+	.hero {
+		background-image: url('/assets/download/download-background-preview.webp');
+	}
+
+	.hero-blurb {
+		color: var(--download-hero-color);
+	}
+
+	.preview-cards {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	footer {
+		margin-top: 0;
+	}
+</style>
+
+<div class="hero">
+	<div class="hero-wrapper">
+		<h1>Download Godot preview builds</h1>
+
+		<div class="hero-blurb">
+			<p>
+				Help test the upcoming release of the engine,
+				<br />
+				and be the first to benefit from new features.
+			</p>
+		</div>
+	</div>
+
+	<div class="other-platforms">
+		<div class="other-platforms-wrapper">
+			Looking for the stable version? <a href="#stable">See below!</a>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="padded" style="padding-top:0;margin-top:32px">
+		<h2>Latest preview builds</h2>
+
+		{% assign stable_versions = site.data.versions | where: "flavor", "stable" %}
+
+		<div class="preview-cards">
+			{% for version in site.data.versions %}
+				{% unless stable_versions contains version %}
+
+					{% include download/version-card.html version=version %}
+
+				{% endunless %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<script src="/assets/js/download-version.js"></script>
+
+{% include /download/download-section.html title="Need a stable version?" %}
+
+{% include footer.html %}
